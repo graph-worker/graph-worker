@@ -1,7 +1,7 @@
 class KRequest {
   req: Request;
 
-  constructor(req) {
+  constructor(req: Request) {
     this.req = req;
   }
 

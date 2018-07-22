@@ -1,24 +1,17 @@
-import { Application } from "./kosw/index";
-import { Router } from "./middlewares/index";
+import { Router } from "./middlewares";
+import { Application, Context } from "./server";
 
 class GraphWorker {
-  scope: ServiceWorkerGlobalScope;
-  app: Application;
   constructor(scope: ServiceWorkerGlobalScope) {
-    this.scope = scope;
-    const app = (this.app = new Application(scope));
+    const app = new Application(scope);
+    const router = new Router();
 
-    app.use(({ req, res }, next) => {
-      if (req.path === "/test") {
-        setTimeout(function() {
-          res.body = "hello world";
-          next();
-        }, 1000);
-      } else {
-        next();
-      }
+    router.get("/test", (ctx: Context, next: Function) => {
+      ctx.body = "222";
+      next();
     });
 
+    app.use(router.routes());
     app.listen();
   }
 }

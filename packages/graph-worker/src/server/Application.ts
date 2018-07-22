@@ -1,21 +1,19 @@
+import { IMiddlewareFn } from "./IMiddleware";
+
 import { KRequest } from "./KRequest";
 import { KResponse } from "./KResponse";
 import { Context } from "./Context";
-import { compose } from "./utils/index";
-
-interface IMiddleware {
-  (ctx: Context, next: Function): any;
-}
+import { compose } from "./utils";
 
 class Application {
   scope: ServiceWorkerGlobalScope;
-  middleware: IMiddleware[] = [];
+  middleware: IMiddlewareFn[] = [];
 
   constructor(scope: ServiceWorkerGlobalScope) {
     this.scope = scope;
   }
 
-  use(fn: IMiddleware) {
+  use(fn: IMiddlewareFn) {
     if (typeof fn !== "function")
       throw new TypeError("middleware must be a function!");
     this.middleware.push(fn);
@@ -33,8 +31,8 @@ class Application {
       event.respondWith(
         new Promise((resolve, reject) => {
           fn(ctx, () => {
-            if (ctx.body) {
-              resolve(new Response(ctx.body));
+            if (ctx.res.body) {
+              resolve(new Response(ctx.res.body));
             } else {
               // fallback to default behavior
               resolve(fetch(event.request));
@@ -53,4 +51,4 @@ class Application {
   }
 }
 
-export { Application };
+export { IMiddlewareFn, Application };

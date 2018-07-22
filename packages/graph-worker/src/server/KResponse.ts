@@ -17,11 +17,6 @@ class KResponse {
   set body(val) {
     this._body = val;
   }
-
-  end(body) {
-    const promise = Promise.resolve(new Response(body));
-    this.event.respondWith(promise);
-  }
 }
 
 export { KResponse };

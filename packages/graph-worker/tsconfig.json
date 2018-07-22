@@ -1,9 +1,21 @@
 {
   "compilerOptions": {
     "allowJs": true,
+    "strict": true,
     "target": "es5",
     "lib": ["webworker", "es2016"],
     "module": "esnext",
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "moduleResolution": "node",
+    "rootDir": "src",
+    "allowSyntheticDefaultImports": true,
+    "downlevelIteration": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": true
   }
 }

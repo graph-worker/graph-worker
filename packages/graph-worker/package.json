@@ -13,6 +13,7 @@
     "webpack": "^4.16.1"
   },
   "dependencies": {
-    "delegates": "^1.0.0"
+    "delegates": "^1.0.0",
+    "path-to-regexp": "^2.2.1"
   }
 }

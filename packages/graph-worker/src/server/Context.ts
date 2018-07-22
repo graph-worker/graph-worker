@@ -10,18 +10,23 @@ class Context {
   set: any;
   append: any;
   flushHeaders: any;
-  status: any;
-  message: any;
+  status: number = 404;
+  message: string = "";
   body: any;
-  length: any;
+  length: number = 0;
   type: any;
   lastModified: any;
   etag: any;
   headerSent: any;
   writable: any;
 
+  method: string = "GET";
+  path: string = "";
+  captures: string[] = [];
+  params: any;
+
   constructor(public req: KRequest, public res: KResponse) {
-    new Delegator(this, "response")
+    new Delegator(this, "res")
       .method("attachment")
       .method("redirect")
       .method("remove")
@@ -39,7 +44,7 @@ class Context {
       .getter("headerSent")
       .getter("writable");
 
-    new Delegator(this, "request")
+    new Delegator(this, "req")
       .method("acceptsLanguages")
       .method("acceptsEncodings")
       .method("acceptsCharsets")
