@@ -17,5 +17,19 @@
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true
+  },
+  "include": ["src"],
+  "exclude": [
+    "node_modules",
+    "build",
+    "scripts",
+    "config",
+    "dist",
+    "src/**/__tests__/**/*",
+    "src/**/__mocks__/**/*",
+    "src/**/*(.spec|.test).ts"
+  ],
+  "typeAcquisition": {
+    "enable": true
   }
 }

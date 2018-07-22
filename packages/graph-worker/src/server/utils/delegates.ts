@@ -28,6 +28,9 @@ class Delegator {
     for (var i = 0; i < properties.length; i++) {
       var property = properties[i];
       var descriptor = Object.getOwnPropertyDescriptor(targetProto, property);
+
+      if (!descriptor) break;
+
       if (descriptor.get) {
         delegator.getter(property);
       }
