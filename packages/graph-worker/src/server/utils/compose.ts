@@ -1,4 +1,4 @@
-import { IMiddlewareFn } from "../IMiddleware";
+import { IMiddleware, IMiddlewareFn, INextFn } from "../IMiddleware";
 import { Context } from "../Context";
 
 /**
@@ -10,8 +10,7 @@ import { Context } from "../Context";
  * @return {Function}
  * @api public
  */
-
-function compose(middleware: IMiddlewareFn[]): IMiddlewareFn {
+function compose(middleware: IMiddleware): IMiddlewareFn {
   if (!Array.isArray(middleware))
     throw new TypeError("Middleware stack must be an array!");
   for (const fn of middleware) {
@@ -25,7 +24,7 @@ function compose(middleware: IMiddlewareFn[]): IMiddlewareFn {
    * @api public
    */
 
-  return function(context: Context, next: Function) {
+  return function(context: Context, next: INextFn) {
     // last called middleware #
     let index = -1;
     return dispatch(0);
@@ -34,7 +33,7 @@ function compose(middleware: IMiddlewareFn[]): IMiddlewareFn {
         return Promise.reject(new Error("next() called multiple times"));
       index = i;
       let fn = middleware[i];
-      if (i === middleware.length) fn = next as IMiddlewareFn;
+      if (i === middleware.length) fn = next;
       if (!fn) return Promise.resolve();
       try {
         return Promise.resolve(fn(context, dispatch.bind(null, i + 1)));

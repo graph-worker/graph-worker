@@ -1,4 +1,10 @@
-import { compose, Context, IMiddlewareFn, IMiddleware } from "../../server";
+import {
+  Context,
+  compose,
+  IMiddlewareFn,
+  IMiddleware,
+  INextFn
+} from "../../server";
 import { Layer } from "./Layer";
 
 interface IRouterOptions {
@@ -95,7 +101,7 @@ class Router {
   routes(): IMiddlewareFn {
     var router = this;
 
-    var dispatch = (ctx: RouterContext, next: Function) => {
+    var dispatch = (ctx: RouterContext, next: INextFn) => {
       var path = router.opts.routerPath || ctx.routerPath || ctx.path;
       var matched = router.match(path, ctx.method);
       var layerChain;

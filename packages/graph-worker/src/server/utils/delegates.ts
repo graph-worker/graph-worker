@@ -115,7 +115,7 @@ class Delegator {
     var target = this.target;
     this.fluents.push(name);
 
-    proto[name] = function(val) {
+    proto[name] = function(val: any) {
       if ("undefined" != typeof val) {
         this[target][name] = val;
         return this;
