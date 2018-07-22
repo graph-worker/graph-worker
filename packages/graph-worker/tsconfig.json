@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "target": "es5",
+    "lib": ["webworker", "es2016"],
+    "module": "esnext",
+    "outDir": "./dist"
+  }
+}
