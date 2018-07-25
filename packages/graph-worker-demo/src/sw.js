@@ -1,5 +1,17 @@
-import { GraphWorker } from "graph-worker";
+import { Application } from "graph-worker";
 
-console.log(GraphWorker);
+const app = new Application(self);
+const router = new Router();
 
-new GraphWorker(self);
+router.get("/test", (ctx, next) => {
+  ctx.body = "222";
+  next();
+});
+
+router.get("/demo", (ctx, next) => {
+  ctx.body = "demo:" + ctx.req.search;
+  next();
+});
+
+app.use(router.routes());
+app.listen();

@@ -19,3 +19,7 @@ if ("serviceWorker" in navigator) {
 fetch("/test")
   .then(resp => resp.text())
   .then(text => console.log(text));
+
+fetch("/demo?a=1")
+  .then(resp => resp.text())
+  .then(text => console.log(text));
