@@ -5,8 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "prestart": "lerna bootstrap",
-    "start": "lerna run --parallel start",
-    "test": "lerna exec --scope graph-worker npm test"
+    "start": "lerna run --parallel --scope server-worker start",
+    "test": "lerna exec --scope server-worker npm test"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,11 @@
   "devDependencies": {
     "lerna": "^2.11.0",
     "typescript": "^2.9.2"
-  }
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "version": "1.0.0"
 }

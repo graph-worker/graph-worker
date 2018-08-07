@@ -4,7 +4,7 @@ import {
   IMiddlewareFn,
   IMiddleware,
   INextFn
-} from "../../server";
+} from "server-worker";
 import { Layer } from "./Layer";
 
 interface IRouterOptions {

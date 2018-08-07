@@ -1,4 +1,4 @@
-import { Delegator } from "./utils/delegates";
+import delegates from "delegates";
 import { KRequest } from "./KRequest";
 import { KResponse } from "./KResponse";
 
@@ -26,7 +26,7 @@ class Context {
   params: any;
 
   constructor(public req: KRequest, public res: KResponse) {
-    new Delegator(this, "res")
+    delegates(this, "res")
       .method("attachment")
       .method("redirect")
       .method("remove")
@@ -44,7 +44,7 @@ class Context {
       .getter("headerSent")
       .getter("writable");
 
-    new Delegator(this, "req")
+    delegates(this, "req")
       .method("acceptsLanguages")
       .method("acceptsEncodings")
       .method("acceptsCharsets")

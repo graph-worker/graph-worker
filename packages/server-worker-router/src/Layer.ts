@@ -1,6 +1,6 @@
 import pathToRegExp, { Key, ParseOptions, RegExpOptions } from "path-to-regexp";
 
-import { IMiddleware } from "../../server";
+import { IMiddleware } from "server-worker";
 import { safeDecodeURIComponent } from "./safeDecodeURIComponent";
 
 type LayerOptions = RegExpOptions &

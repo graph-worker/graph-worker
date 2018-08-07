@@ -1,4 +1,5 @@
-import { Application, Router } from "graph-worker";
+import { Application } from "server-worker";
+import { Router } from "server-worker-router";
 
 const app = new Application(self);
 const router = new Router();
